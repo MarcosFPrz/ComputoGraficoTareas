@@ -1,3 +1,0 @@
-C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/CMakeFiles/ALL_BUILD.dir
-C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/CMakeFiles/ZERO_CHECK.dir
-C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/src/CMakeFiles/glfw.dir
