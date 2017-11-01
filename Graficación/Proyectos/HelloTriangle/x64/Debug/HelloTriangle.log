@@ -1,0 +1,9 @@
+﻿  Application.cpp
+  Generating Code...
+  Compiling...
+  HelloTriangle.cpp
+c:\users\marcos\documents\sae\6to trimestre\graficación\proyectos\hellotriangle\src\hellotriangle.cpp(61): warning C4129: ' ': unrecognized character escape sequence
+c:\users\marcos\documents\sae\6to trimestre\graficación\proyectos\hellotriangle\src\hellotriangle.cpp(62): warning C4129: ' ': unrecognized character escape sequence
+  Generating Code...
+  HelloTriangle.vcxproj -> C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficación\Proyectos\x64\Debug\HelloTriangle.exe
+  HelloTriangle.vcxproj -> C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficación\Proyectos\x64\Debug\HelloTriangle.pdb (Partial PDB)

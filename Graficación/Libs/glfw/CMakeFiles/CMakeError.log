@@ -1,0 +1,114 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_c3652.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine versi¢n 15.3.409.57025 para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Compilaci¢n iniciada a las 16/10/2017 08:13:36 a. m..
+Proyecto "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_c3652.vcxproj" en nodo 1 (destinos predeterminados).
+PrepareForBuild:
+  Creando directorio "cmTC_c3652.dir\Debug\".
+  Creando directorio "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\Debug\".
+  Creando directorio "cmTC_c3652.dir\Debug\cmTC_c3652.tlog\".
+InitializeBuildStatus:
+  Se crear  "cmTC_c3652.dir\Debug\cmTC_c3652.tlog\unsuccessfulbuild" porque se especific¢ "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c3652.dir\Debug\\" /Fd"cmTC_c3652.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  Compilador de optimizaci¢n de C/C++ de Microsoft (R) versi¢n 19.11.25508.2 para x86
+  (C) Microsoft Corporation. Todos los derechos reservados.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c3652.dir\Debug\\" /Fd"cmTC_c3652.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  CheckIncludeFile.c
+  
+C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_c3652.vcxproj]
+Compilaci¢n del proyecto terminada "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_c3652.vcxproj" (destinos predeterminados) -- ERROR.
+
+ERROR al compilar.
+
+"C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_c3652.vcxproj" (destino predeterminado) (1) ->
+(ClCompile destino) -> 
+  C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_c3652.vcxproj]
+
+    0 Advertencia(s)
+    1 Errores
+
+Tiempo transcurrido 00:00:00.59
+
+
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_d8abf.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine versi¢n 15.3.409.57025 para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Compilaci¢n iniciada a las 16/10/2017 08:18:31 a. m..
+Proyecto "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_d8abf.vcxproj" en nodo 1 (destinos predeterminados).
+PrepareForBuild:
+  Creando directorio "cmTC_d8abf.dir\Debug\".
+  Creando directorio "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\Debug\".
+  Creando directorio "cmTC_d8abf.dir\Debug\cmTC_d8abf.tlog\".
+InitializeBuildStatus:
+  Se crear  "cmTC_d8abf.dir\Debug\cmTC_d8abf.tlog\unsuccessfulbuild" porque se especific¢ "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d8abf.dir\Debug\\" /Fd"cmTC_d8abf.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  Compilador de optimizaci¢n de C/C++ de Microsoft (R) versi¢n 19.11.25508.2 para x86
+  (C) Microsoft Corporation. Todos los derechos reservados.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d8abf.dir\Debug\\" /Fd"cmTC_d8abf.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  CheckIncludeFile.c
+  
+C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_d8abf.vcxproj]
+Compilaci¢n del proyecto terminada "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_d8abf.vcxproj" (destinos predeterminados) -- ERROR.
+
+ERROR al compilar.
+
+"C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_d8abf.vcxproj" (destino predeterminado) (1) ->
+(ClCompile destino) -> 
+  C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_d8abf.vcxproj]
+
+    0 Advertencia(s)
+    1 Errores
+
+Tiempo transcurrido 00:00:00.56
+
+
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/Marcos/Documents/SAE/6to Trimestre/Graficación/Libs/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_a6db8.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine versi¢n 15.3.409.57025 para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Compilaci¢n iniciada a las 16/10/2017 08:20:21 a. m..
+Proyecto "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_a6db8.vcxproj" en nodo 1 (destinos predeterminados).
+PrepareForBuild:
+  Creando directorio "cmTC_a6db8.dir\Debug\".
+  Creando directorio "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\Debug\".
+  Creando directorio "cmTC_a6db8.dir\Debug\cmTC_a6db8.tlog\".
+InitializeBuildStatus:
+  Se crear  "cmTC_a6db8.dir\Debug\cmTC_a6db8.tlog\unsuccessfulbuild" porque se especific¢ "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a6db8.dir\Debug\\" /Fd"cmTC_a6db8.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  Compilador de optimizaci¢n de C/C++ de Microsoft (R) versi¢n 19.11.25508.2 para x64
+  (C) Microsoft Corporation. Todos los derechos reservados.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a6db8.dir\Debug\\" /Fd"cmTC_a6db8.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  CheckIncludeFile.c
+  
+C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_a6db8.vcxproj]
+Compilaci¢n del proyecto terminada "C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_a6db8.vcxproj" (destinos predeterminados) -- ERROR.
+
+ERROR al compilar.
+
+"C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_a6db8.vcxproj" (destino predeterminado) (1) ->
+(ClCompile destino) -> 
+  C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory [C:\Users\Marcos\Documents\SAE\6to Trimestre\Graficaci¢n\Libs\glfw\CMakeFiles\CMakeTmp\cmTC_a6db8.vcxproj]
+
+    0 Advertencia(s)
+    1 Errores
+
+Tiempo transcurrido 00:00:00.58
+
+
