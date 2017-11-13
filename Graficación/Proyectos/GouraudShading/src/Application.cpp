@@ -130,7 +130,8 @@ void Application::update(){
 	transformCube = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	transformCube = glm::rotate(glm::mat4(1.0f), glm::radians(angles.y), glm::vec3(0.0f, 1.0f, 0.0f)) *transformCube;
 	perspective = glm::perspective(45.0f, 1024.0f / 768.0f, 0.1f, 300.0f);
-	transformCube = perspective * lookAt * transformCube  * moveCube * scaleCube;
+	transformCube = perspective * lookAt * moveCube * transformCube * scaleCube;
+	transform = perspective * lookAt * rotateX * rotateY;
 }
 
 void Application::setup(){
@@ -263,6 +264,12 @@ void Application::reshape(int w, int h){
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 }
 
+void Application::cursor_position(double xpos, double ypos)
+{
+	rotateY = glm::rotate(glm::mat4(1.0f), glm::radians((float)xpos/2.84f), glm::vec3(0.0f, 1.0f, 0.0f));
+	rotateX = glm::rotate(glm::mat4(1.0f), glm::radians((float)ypos/2.02f), glm::vec3(1.0f, 0.0f, 0.0f));
+}
+
 void Application::keyboard(int key, int scancode, int action, int mods){
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		exit(0);
@@ -285,6 +292,14 @@ void Application::keyboard(int key, int scancode, int action, int mods){
 
 		case GLFW_KEY_UP:
 			myLightPosition.y += 5.0f;
+			break;
+
+		case GLFW_KEY_Z:
+			myLightPosition.z += 5.0f;
+			break;
+
+		case GLFW_KEY_X:
+			myLightPosition.z -= 5.0f;
 			break;
 		}
 		return;

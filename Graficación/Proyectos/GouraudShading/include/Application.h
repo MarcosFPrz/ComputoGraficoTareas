@@ -24,15 +24,17 @@ public:
 	void displayPlane();
 	void reshape(int w, int h);
 	void keyboard(int key, int scancode, int action, int mods);
+	void cursor_position(double xpos, double ypos);
 
 private:	
 	Object3D triangle;
 	glm::mat4 transformCube;
 	Plane oPlane;
 	float time;
-	glm::mat4 transform;
+	glm::mat4 transform, rotateY, rotateX;
 	glm::mat4 scaleCube;
 	glm::mat4 moveCube;
+	glm::mat4 rotateCube;
 	glm::vec3 eye;
 	glm::vec3 angles;
 	glm::vec3 target;
@@ -40,7 +42,6 @@ private:
 	glm::vec3 myLightPosition;
 	glm::mat4 lookAt;
 	glm::mat4 perspective;
-	glm::mat4 perspectiveCube;
 	glm::mat4 newPosis;
 
 	GLuint mTransformID,
