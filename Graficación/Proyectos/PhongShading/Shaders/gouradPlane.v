@@ -42,15 +42,11 @@ vec3 getSpecular( in vec3 light, in vec3 mat, in vec3 lightv, in vec3 Normal, in
 float Dp(float a, float b) 
 {
 	return 2 * cos(0.005 * (a*a + b*b) - fTime) * 0.005 * 2 * a;
-
-	//return   2 * cos (0.005 * (a*a + b*b) - fTime) * 0.005 * 2.0*a;
 }
 
 
 float F(float x, float z) 
 {
-	//return   2.0 * sin (.005 * (x*x   +  z*z) - fTime);
-
 	return 2.0 * sin (.005 * (x*x + z*z) - fTime);
 }
 
@@ -82,7 +78,7 @@ void main()
 
 	//CALCULO DE NORMALES
 	vec3 normal = calculateNormal (vNewVec);
-	mat4 matForNormals = transpose(inverse(mTransform));
+	mat4 matForNormals = transpose( inverse(mTransform));
 	vec3 newNormal = normalize(matForNormals * vec4(normal, 1.0)).xyz;
 
 	//calculo de posicion de luz
@@ -95,5 +91,5 @@ void main()
 			,0.0, 1.0);
 
 	
-   gl_Position = perspective * camera * mTransform * vNewVec;
+   gl_Position = mTransform * vNewVec;
 }

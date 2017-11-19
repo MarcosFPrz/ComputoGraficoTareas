@@ -1,10 +1,18 @@
 #version 430 core
 
 uniform float fTime;
-uniform mat4 mTransform;
 uniform vec3 myLightPosition;
 uniform vec3 vEye;
+uniform mat4 mTransform;
 
+uniform vec3 lA;
+uniform vec3 lD;
+uniform vec3 lS;
+uniform vec3 mA;
+uniform vec3 mD;
+uniform vec3 mS;
+
+in vec4 observedPosition;
 out vec4 color;
 
 vec3 getAmbient(in vec3 light, in vec3 mat)
@@ -32,17 +40,15 @@ vec3 getSpecular( in vec3 light, in vec3 mat, in vec3 lightv, in vec3 Normal, in
 	return specular;
 }
 
+float F(float x, float z) 
+{
+	return 2.0 * sin (.005 * (x*x + z*z) - fTime);
+}
+
 //Derivada parcial de "a"
 float Dp(float a, float b) 
 {
 	return 2 * cos(0.005 * (a*a + b*b) - fTime) * 0.005 * 2 * a;
-}
-
-float F(float x, float z) 
-{
-	//return   2.0 * sin (.005 * (x*x   +  z*z) - fTime);
-
-	return 2.0 * sin (.005 * (x*x + z*z) - fTime);
 }
 
 //calculamos la normal antes de aplicar transformaciones
@@ -56,12 +62,7 @@ vec3 calculateNormal (vec4 v)
 
 void main()
 {
-	const vec3 lA = vec3( 0.2, 0.2, 0.2 );
-	const vec3 lD = vec3( 0.4, 0.4, 0.4 );
-	const vec3 lS = vec3( 1.0, 1.0, 1.0 );
-	const vec3 mA = vec3( 1.0, 0.5, 0.0 );
-	const vec3 mD = vec3( 1.0, 0.5, 0.0 );
-	const vec3 mS = vec3( 1.0, 1.0, 1.0 );
+	
 	const float fShininess = 80.0;
 
 	vec4 vNewPos = observedPosition;
@@ -71,7 +72,7 @@ void main()
 
 	//CALCULO DE NORMALES
 	vec3 normal = calculateNormal (vNewPos);
-	mat4 matForNormals = transpose(inverse(mTransform));
+	mat4 matForNormals = transpose( inverse(mTransform));
 	vec3 newNormal = normalize(matForNormals * vec4(normal, 1.0)).xyz;
 
 	//calculo de posicion de luz
@@ -82,4 +83,5 @@ void main()
 			+ vec4(getDifusse(lD, mD, lightv, newNormal), 1.0)
 			+ vec4(getSpecular(lS, mS, lightv, newNormal, fShininess, vNewPos.xyz), 1.0)
 			,0.0, 1.0);
+
 }

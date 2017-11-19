@@ -1,4 +1,3 @@
-
 #include <string>
 #include <vector>
 #include <stdio.h>
@@ -11,18 +10,18 @@
 Application app;
 
 //Se tiene que llamar despues de inicializar la ventana y el OpenGL, pero antes del main loop
-void setup(){
+void setup() {
 	app.setup();
 }
 
 //Se ejecuta siempre que se necesite actualizar la imagen
-void display(){
+void display() {
 	app.display();
 }
 
 //Se ejecuta cuando la ventana cambia de tamaño. Parámetros en pixeles.
 //(ojo: En otros programas se debe ejecutar glViewport)
-void reshape(int w, int h){
+void reshape(int w, int h) {
 	app.reshape(w, h);
 }
 
@@ -30,7 +29,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	app.keyboard(key, scancode, action, mods);
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+
 	GLFWwindow* window;
 
 	/* Initialize the library */
@@ -48,23 +48,23 @@ int main(int argc, char *argv[]){
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 
-	glewExperimental = GL_TRUE; 
+	glewExperimental = GL_TRUE;
 	glewInit();
 	app.setup();
 
 	// get version info 
-	const GLubyte* renderer = glGetString (GL_RENDERER); 
-	const GLubyte* version = glGetString (GL_VERSION); 
-	printf (" Renderer: %s\ n", renderer); 
-	printf (" OpenGL version supported %s\ n", version); 
-	
+	const GLubyte* renderer = glGetString(GL_RENDERER);
+	const GLubyte* version = glGetString(GL_VERSION);
+	printf(" Renderer: %s\ n", renderer);
+	printf(" OpenGL version supported %s\ n", version);
+
 	// tell GL to only draw onto a pixel if the shape is closer to the viewer 
-	glEnable (GL_DEPTH_TEST); // enable depth-testing 	
-	glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer" 
+	//glEnable (GL_DEPTH_TEST); // enable depth-testing 	
+	//glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer" 
 
 	glViewport(0, 0, (GLsizei)1024, (GLsizei)768);
 	glEnable(GL_DEPTH_TEST); //Z-buffer
-	
+
 	glfwSetKeyCallback(window, key_callback);
 
 	while (!glfwWindowShouldClose(window))
@@ -75,10 +75,10 @@ int main(int argc, char *argv[]){
 		app.update();
 		/* put the stuff we've been drawing onto the display */
 		app.display();
-		
+
 		glfwSwapBuffers(window);
 	}
-	
+
 	/* close GL context and any other GLFW resources */
 	glfwTerminate();
 	return 0;

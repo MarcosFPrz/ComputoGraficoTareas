@@ -1,4 +1,3 @@
-
 #include "ShaderFuncs.h"
 
 #include <vector>
@@ -26,7 +25,7 @@ GLuint CreateShader(GLenum eShaderType, const std::string &strShaderFile)
 		glGetShaderInfoLog(shader, infoLogLength, NULL, strInfoLog);
 
 		const char *strShaderType = NULL;
-		switch(eShaderType)
+		switch (eShaderType)
 		{
 		case GL_VERTEX_SHADER: strShaderType = "vertex"; break;
 			//case GL_GEOMETRY_SHADER: strShaderType = "geometry"; break;
@@ -44,13 +43,13 @@ GLuint CreateProgram(const std::vector<GLuint> &shaderList)
 {
 	GLuint program = glCreateProgram();
 
-	for(size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
+	for (size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
 		glAttachShader(program, shaderList[iLoop]);
 
 	glLinkProgram(program);
 
 	GLint status;
-	glGetProgramiv (program, GL_LINK_STATUS, &status);
+	glGetProgramiv(program, GL_LINK_STATUS, &status);
 	if (status == GL_FALSE)
 	{
 		GLint infoLogLength;
@@ -62,7 +61,7 @@ GLuint CreateProgram(const std::vector<GLuint> &shaderList)
 		delete[] strInfoLog;
 	}
 
-	for(size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
+	for (size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
 		glDetachShader(program, shaderList[iLoop]);
 
 	return program;

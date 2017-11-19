@@ -15,7 +15,7 @@ public:
 	Application();
 	~Application();
 
-	GLFWwindow* window;
+	//GLFWwindow* window;
 
 	void update();
 	void setup();
@@ -26,7 +26,7 @@ public:
 	void keyboard(int key, int scancode, int action, int mods);
 	void cursor_position(double xpos, double ypos);
 
-private:	
+private:
 	Object3D triangle;
 	glm::mat4 transformCube;
 	Plane oPlane;
@@ -44,12 +44,21 @@ private:
 	glm::mat4 perspective;
 	glm::mat4 newPosis;
 
-	GLuint mTransformID[2],
-		cameraID[2],
-		perspectiveID[2],
-		eyeID[2],
-		myLightPositionID[2],
-		fTimeID[2],
-		idTransformCube[2];
-};
+	glm::vec3 lA, lD, lS, mA, mD, mS;
 
+	GLuint mTransformID,
+		cameraID,
+		perspectiveID,
+		eyeID,
+		myLightPositionID,
+		fTimeID,
+		idTransformCube,
+		laID,
+		ldID,
+		lsID,
+		maID,
+		mdID,
+		msID;
+
+
+};

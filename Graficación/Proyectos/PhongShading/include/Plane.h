@@ -4,11 +4,11 @@
 #include "glm\glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-class Plane : public Object3D{
+class Plane : public Object3D {
 public:
 	GLfloat *normals,
-			*plane,
-			*textureCoords;
+		*plane,
+		*textureCoords;
 
 	Plane();
 	~Plane();
@@ -27,10 +27,10 @@ public:
 	void createPlane(int side = 100);
 	void cleanMemory();
 	int getNumVertex();
-		
+
 	int side;
 
 	size_t getVertexSizeInBytes();
 	size_t getTextureCoordsSizeInBytes();
-	
+
 };

@@ -8,15 +8,14 @@
 
 
 
-class Object3D{
+class Object3D {
 public:
 	GLuint	vao, //Vertex Array Object
-			vbo; //Vertex Buffer Object
+		vbo; //Vertex Buffer Object
 
 	int numVertex; //numero de vertices para este objeto
 
-	int numShaders;
-	GLuint shader[2]; //referencia a los shaders
+	GLuint shader; //referencia a los shaders
 	GLuint uniform; //para almacenar el angulo
 	float angleX; //<-----------------------------------------
 	float angleY;
@@ -24,4 +23,3 @@ public:
 	//Object3D();
 
 };
-
