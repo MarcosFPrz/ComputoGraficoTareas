@@ -19,8 +19,8 @@ public:
 	GLint uTransform;
 	GLint uTime;
 	GLint uEye;
-	GLuint texture_id;
-	GLint uTexture;
+	GLuint texture_id[2];
+	GLint uTexture[2];
 
 	size_t size;
 

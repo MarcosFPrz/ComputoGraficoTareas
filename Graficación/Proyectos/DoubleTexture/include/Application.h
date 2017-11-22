@@ -27,7 +27,7 @@ private:
 	int views;
 	Plane oPlane;
 	float time;
-	glm::mat4 transform, mouseRotation;
+	glm::mat4 transform, mouseRotationX, mouseRotationY;
 	glm::vec3 eye;
 	glm::vec3 target;
 	glm::vec3 up;

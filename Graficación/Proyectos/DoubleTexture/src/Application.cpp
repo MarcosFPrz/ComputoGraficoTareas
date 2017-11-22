@@ -11,7 +11,7 @@
 #define __NUM_VIEWS_ 2
 
 Application::Application():oPlane() , views(0),
-							mouseRotation(glm::mat4(1.0f))
+							mouseRotationX(glm::mat4(1.0f)), mouseRotationY(glm::mat4(1.0f))
 {
 	eye = glm::vec3(0.0f, 30.0f, 70.0f);
 	target = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -26,7 +26,7 @@ void Application::update(){
 
 	lookAt = glm::lookAt(eye, target, up);
 	perspective = glm::perspective(45.0f, 640.0f / 480.0f, 0.1f, 200.0f);
-	transform = perspective * lookAt * mouseRotation;
+	transform = perspective * lookAt * mouseRotationX * mouseRotationY;
 	glUniformMatrix4fv(oPlane.uTransform, 1, false, glm::value_ptr(transform));
 
 	//parametro de fase para shaders
@@ -60,14 +60,18 @@ GLuint Application::setupTexture(const std::string& name)
 void Application::setup(){
 	oPlane.createPlane(1);
 
-	oPlane.texture_id = setupTexture("Lenna.png");
-	
+	oPlane.texture_id[0] = setupTexture("Lenna.png");
+	oPlane.texture_id[1] = setupTexture("LinkinPark.png");
+
 	std::string strVertexShader = loadTextFile("Shaders/passThru.v");
 	std::string strFragmentShader = loadTextFile("Shaders/passThru.f");
+
 	InitializeProgram(oPlane.shader, strVertexShader, strFragmentShader);
+
 	oPlane.uTransform = glGetUniformLocation(oPlane.shader, "mTransform");
 	oPlane.uTime = glGetUniformLocation(oPlane.shader, "fTime");
-	oPlane.uTexture = glGetUniformLocation(oPlane.shader, "texture0");
+	oPlane.uTexture[0] = glGetUniformLocation(oPlane.shader, "texture1");
+	oPlane.uTexture[1] = glGetUniformLocation(oPlane.shader, "texture0");
 
 	//oPlane.uEye = glGetUniformLocation(oPlane.shader, "vEye");
 	glGenVertexArrays(1, &oPlane.vao);
@@ -102,12 +106,19 @@ void Application::displayPerspective()
 	glBindVertexArray(oPlane.vao);
 
 	//texture0
-	glBindTexture(GL_TEXTURE_2D, oPlane.texture_id);
-	glUniform1i(oPlane.uTexture, 0);
+	glBindTexture(GL_TEXTURE_2D, oPlane.texture_id[0]);
+	glUniform1i(oPlane.uTexture[0], 0);
 	glActiveTexture(GL_TEXTURE0);
-	
+
+	//texture1
+	glBindTexture(GL_TEXTURE_2D, oPlane.texture_id[1]);
+	glUniform1i(oPlane.uTexture[1], 1);
+	glActiveTexture(GL_TEXTURE1);
+
 	//glUniform3fv(oPlane.uEye, 1, glm::value_ptr(eye));
 	glDrawArrays(GL_TRIANGLES, 0, oPlane.getNumVertex());
+
+
 }
 
 void Application::displayOrthogonal()
@@ -144,5 +155,6 @@ void Application::keyboard(int key, int scancode, int action, int mods){
 void Application::mousePosition(double xpos, double ypos)
 {
 	std::cout << xpos << ", " << ypos << "\n";
-	mouseRotation = glm::rotate(glm::mat4(1.0f), (float)glm::radians(xpos), glm::vec3(0.0f, 1.0f, 0.0f));
+	mouseRotationY = glm::rotate(glm::mat4(1.0f), (float)glm::radians(xpos/2.04f), glm::vec3(0.0f, 1.0f, 0.0f));
+	mouseRotationX = glm::rotate(glm::mat4(1.0f), (float)glm::radians(ypos/2.04f), glm::vec3(1.0f, 0.0f, 0.0f));
 }
