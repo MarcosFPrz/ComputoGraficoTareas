@@ -21,27 +21,54 @@ public:
 	void setup();
 	void update();
 	void display();
+	void display2();
+	void displayEditor();
+	void displayGame();
+	void displayMiniMap();
 	void reshape(int w, int h);
+	void cursor_position(double xpos, double ypos);
+	void IAfantasmas();
 
 private:
 	GLuint angleID, transformID;
-	Object3D camino,piso, muro, pildora, pacman;
+	Object3D camino, piso, muro, pildora, pacman, fantasma;
 
 	std::vector<std::vector<int>> Mapa
 	{
-		{1,1,1,1,1},
-		{1,2,2,2,1},
-		{1,2,1,2,1},
-		{1,2,2,2,1},
-		{1,1,1,1,1}
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		{1,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,1},
+		{1,2,1,2,1,2,1,2,1,1,2,1,2,1,2,1,2,1},
+		{1,2,1,2,1,2,1,2,1,1,2,1,2,1,2,1,2,1},
+		{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+		{1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1},
+		{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+		{1,2,1,1,2,1,2,1,2,2,1,2,1,2,1,1,2,1},
+		{1,2,2,1,2,1,2,1,4,4,1,2,1,2,1,2,2,1},
+		{1,1,2,1,2,1,2,1,4,4,1,2,1,2,1,2,1,1},
+		{1,1,2,1,2,1,2,1,1,1,1,2,1,2,1,2,1,1},
+		{1,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,1},
+		{1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1},
+		{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+		{1,2,1,2,1,2,1,2,1,1,2,1,2,1,2,1,2,1},
+		{1,2,1,2,1,2,1,2,1,1,2,1,2,1,2,1,2,1},
+		{1,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,1},
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+
 	};
 
-	int xi;
-	int yi;
+	bool moveZmenos = false;
+	bool moveZmas = false;
+	bool moveXmenos = false;
+	bool moveXmas = false;
+	bool edit = false;
+	bool game = false;
+	bool type = false;
 
-	glm::mat4 camera;
-	glm::mat4 transformR;
+	int x, y, iPac, jPac;	
+	int i, j;
+	
+	glm::mat4 camera, rotateY, rotateX;
+	glm::mat4 transformP;
 	glm::vec3 eye, target, angles;
-
 };
 

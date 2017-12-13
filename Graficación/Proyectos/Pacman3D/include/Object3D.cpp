@@ -42,6 +42,11 @@ void Object3D::SetTranslation(glm::mat4 trans)
 	translation = trans;
 }
 
+void Object3D::Position(glm::mat4 posactual)
+{
+	position = posactual;
+}
+
 void Object3D::SetScale(glm::mat4 sc)
 {
 	scale = sc;

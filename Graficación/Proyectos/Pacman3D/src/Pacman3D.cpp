@@ -30,6 +30,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	app.keyboard(key, scancode, action, mods);
 }
 
+void cursor_position(GLFWwindow* window, double xpos, double ypos)
+{
+	app.cursor_position(xpos, ypos);
+}
+
 int main(int argc, char *argv[]){
 	GLFWwindow* window;
 
@@ -62,20 +67,25 @@ int main(int argc, char *argv[]){
 	//glEnable (GL_DEPTH_TEST); // enable depth-testing 	
 	//glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer" 
 
-	glViewport(0, 0, (GLsizei)1080, (GLsizei)1080);
 	glEnable(GL_DEPTH_TEST); //Z-buffer
-	
+	glEnable(GL_BLEND);
 	glfwSetKeyCallback(window, key_callback);
 	
 	while (!glfwWindowShouldClose(window))
 	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);    
+		glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+		glDepthRange(0.1, 1.0);
 		/* update other events like input handling */
 		glfwPollEvents();
-
 		app.update();
 		/* put the stuff we've been drawing onto the display */
+		glViewport(0, 0, (GLsizei)1080, (GLsizei)1080);
 		app.display();
-		
+
+		glDepthRange(0.0, 0.1);
+		glViewport(0, 0, (GLsizei)1080/4, (GLsizei)1080/4);
+		app.display2();
 		glfwSwapBuffers(window);
 	}
 	

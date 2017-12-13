@@ -62,81 +62,20 @@ std::vector<GLfloat> vertexPositions = {
 		1.0f, -1.0f, -1.0f, 1.0f, //n
 };
 
-Application::Application() : /*eye(1.0f, -7.0f, 1.0f), 
-							target (10.0f, 10.0f, 1.0f), 
-							angles(0.0f, 0.0f, 0.0f)*/
-	eye(0.0f, -7.0f, 6.0f),
-	target(0.0f, 0.0f, 0.0f),
-	angles(0.0f, 0.0f, 0.0f)
+Application::Application()
 {
 
 }
 
-Application::~Application() 
+Application::~Application()
 {}
-glm::mat4 trans2;
+
 void Application::update()
 {
-	angles.x += 0.05f;
-	angles.y += 0.05f;
 
-	camera = glm::lookAt(eye, target, glm::vec3(1.0f, 1.0f, 0.0f));
-	transformR = glm::rotate(glm::mat4(1.0f), glm::radians(angles.x), glm::vec3(1.0f, 0.0f, 0.0f));
-	/*transform = glm::rotate(transform, glm::radians(angles.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	transform = glm::perspective(45.0f, 1.0f, 0.1f, 10.0f) * 
-				camera * transform;
-	trans2 = glm::perspective(45.0f, 1.0f, 0.1f, 10.0f) *
-		camera * glm::translate(glm::mat4(1),glm::vec3(1,1,1)) * glm::scale(glm::mat4(1),glm::vec3(0.5f,0.5f,0.5f));*/
-}
+	camera = glm::lookAt(eye,target, glm::vec3(1.0f, 1.0f, 1.0f)) * rotateY * rotateX;
+	transformP = glm::translate(glm::mat4(1.0f), glm::vec3(angles.x, 0.0f, angles.z));
 
-void Application::keyboard(int key, int scancode, int actions, int mods)
-{
-	if (key == GLFW_KEY_ESCAPE && actions == GLFW_PRESS) {
-		exit(0);
-	}
-	if (actions == GLFW_RELEASE)
-	{
-		switch (key)
-		{
-
-		case GLFW_KEY_Y:
-			++angles.y;
-			break;
-
-		case GLFW_KEY_X:
-			++angles.x;
-			break;
-		}
-	}
-	else if (actions == GLFW_REPEAT)
-	{
-		switch (key)
-		{
-		case GLFW_KEY_Y:
-			angles.y += 1.0f;
-			break;
-
-		case GLFW_KEY_X:
-			angles.x += 1.0f;
-			break;
-
-		case GLFW_KEY_LEFT:
-			angles.y -= 1.0f;
-			break;
-
-		case GLFW_KEY_RIGHT:
-			angles.y += 1.0f;
-			break;
-
-		case GLFW_KEY_UP:
-			angles.x -= 1.0f;
-			break;
-
-		case GLFW_KEY_DOWN:
-			angles.x += 1.0f;
-			break;
-		}
-	}
 }
 
 void Application::setup()
@@ -151,46 +90,57 @@ void Application::setup()
 
 	pildora.setShaders("shaders\\vertex.vs", "shaders\\fragment.fs");
 	pildora.setUp(vertexPositions, NULL);
-	pildora.SetColor(glm::vec3(1.0, 1.0, 0.0));
+	pildora.SetColor(glm::vec3(1.0, 1.0, 1.0));
 
 	pacman.setShaders("shaders\\vertex.vs", "shaders\\fragment.fs");
 	pacman.setUp(vertexPositions, NULL);
 	pacman.SetColor(glm::vec3(1.0, 1.0, 0.0));
 
+	fantasma.setShaders("shaders\\vertex.vs", "shaders\\fragment.fs");
+	fantasma.setUp(vertexPositions, NULL);
+	fantasma.SetColor(glm::vec3(1.5, 0.5, 0.0));
+
 }
 
-void Application::display()
+void Application::displayMiniMap()
 {
-	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//Piso
-	piso.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(10.0f, 0.0f, 10.0f)));
-	piso.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 10.0f));
-	piso.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
-	piso.draw();
-
-	//Pacman
-	pacman.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.2f, 0.2f, 0.2f)));
-	//pacman.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 0.0f, j * 2)));
-	pacman.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 10.0f));
-	pacman.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
-	pacman.draw();
+	eye = glm::vec3(21.0f, -8.0f, 18.0f);
+	target = glm::vec3(20.0f, 16.0f, 18.0f);
 
 	for (int i = 0; i < Mapa.size(); ++i)
 		for (int j = 0; j < Mapa[i].size(); ++j)
 		{
 			//Muros
 			muro.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
-			muro.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 0.0f, j * 2)));
-			muro.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 10.0f));
+			muro.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			muro.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
 			muro.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
 
 			//Pildoras
 			pildora.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.2f, 0.2f, 0.2f)));
-			pildora.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 0.0f, j * 2)));
-			pildora.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 10.0f));
+			pildora.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			pildora.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
 			pildora.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Piso
+			piso.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f)));
+			piso.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			piso.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			piso.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Pacman
+			pacman.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f)));
+			pacman.SetTranslation(glm::translate(transformP, glm::vec3(i * 2, 10.0f, j * 2)));
+			pacman.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			pacman.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Fantasma
+			fantasma.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.4f, 0.4f, 0.4f)));
+			fantasma.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			fantasma.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			fantasma.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			piso.draw();
 
 			if (Mapa[i].at(j) == Muro)
 			{
@@ -201,16 +151,295 @@ void Application::display()
 			{
 				pildora.draw();
 			}
-			
+
 			if (Mapa[i].at(j) == Pacman)
 			{
 				pacman.draw();
 			}
+
+			if (Mapa[i].at(j) == Fantasmita)
+			{
+				fantasma.draw();
+			}
+
 		}
 }
 
+void Application::cursor_position(double xpos, double ypos)
+{
+	std::cout << xpos << ", " << ypos << "\n";
+	rotateY = glm::rotate(glm::mat4(1.0f), glm::radians((float)xpos / 2.84f), glm::vec3(0.0f, 1.0f, 0.0f));
+	rotateX = glm::rotate(glm::mat4(1.0f), glm::radians((float)ypos / 2.02f), glm::vec3(1.0f, 0.0f, 0.0f));
+}
+
+void Application::displayEditor()
+{
+	eye = glm::vec3(21.0f, -8.0f, 18.0f);
+	target = glm::vec3(20.0f, 16.0f, 18.0f);
+
+	int x, y, objeto;
+
+	if (type)
+	{ 
+		system("cls");
+		for (int i = 0; i < Mapa.size(); ++i)
+		{
+			for (int j = 0; j < Mapa.at(i).size(); ++j)
+			{
+				std::cout << Mapa.at(i).at(j);
+			}
+
+			std::cout << "\n";
+		}
+
+		std::cout << "Escriba que posicion desea modificar\n";
+		std::cout << "i = fila\n";
+		std::cin >> x;
+		std::cout << "j = columna\n";
+		std::cin >> y;
+		std::cout << "Que desea colocar?\n";
+		std::cout << "0 = piso, 1 = Muro\n";
+		std::cin >> objeto;
+
+		if (objeto < 0 && objeto > 1)
+		{
+			std::cout << "Ingrese un numero entre 0 y 2\n";
+		}
+		else
+		{
+			Mapa[x].at(y) = objeto;
+		}
+
+		type = false;
+	}
+
+	for (int i = 0; i < Mapa.size(); ++i)
+		for (int j = 0; j < Mapa[i].size(); ++j)
+		{
+			//Muros
+			muro.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
+			muro.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			muro.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			muro.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Pildoras
+			pildora.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.2f, 0.2f, 0.2f)));
+			pildora.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			pildora.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			pildora.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Piso
+			piso.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f)));
+			piso.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			piso.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			piso.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Pacman
+			pacman.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f)));
+			pacman.SetTranslation(glm::translate(transformP, glm::vec3(i * 2, 10.0f, j * 2)));
+			pacman.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			pacman.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Fantasma
+			fantasma.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.4f, 0.4f, 0.4f)));
+			fantasma.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			fantasma.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			fantasma.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			piso.draw();
+
+			if (Mapa[i].at(j) == Muro)
+			{
+				muro.draw();
+			}
+
+			if (Mapa[i].at(j) == Pildorita)
+			{
+				pildora.draw();
+			}
+
+			if (Mapa[i].at(j) == Pacman)
+			{
+				pacman.draw();
+			}
+
+			if (Mapa[i].at(j) == Fantasmita)
+			{
+				fantasma.draw();
+			}
+
+		}
+}
+
+void Application::displayGame()
+{
+	eye = glm::vec3(23.0f, 9.0f, 18.0f);
+	target = glm::vec3(22.0f, 9.0f, 18.0f);
+
+	for (i = 0; i < Mapa.size(); ++i)
+	{
+		for (j = 0; j < Mapa[i].size(); ++j)
+		{
+
+			//Muros
+			muro.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)));
+			muro.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			muro.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			muro.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Pildoras
+			pildora.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.2f, 0.2f, 0.2f)));
+			pildora.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			pildora.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			pildora.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Piso
+			piso.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 0.0f, 1.0f)));
+			piso.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			piso.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			piso.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Pacman
+			pacman.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f)));
+			pacman.SetTranslation(glm::translate(transformP, glm::vec3(i * 2, 10.0f, j * 2)));
+			pacman.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			pacman.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			//Fantasma
+			fantasma.SetScale(glm::scale(glm::mat4(1.0f), glm::vec3(0.4f, 0.4f, 0.4f)));
+			fantasma.SetTranslation(glm::translate(glm::mat4(1.0f), glm::vec3(i * 2, 10.0f, j * 2)));
+			fantasma.SetPerspective(glm::perspective(42.0f, 1.0f, 0.2f, 150.0f));
+			fantasma.SetCamera(glm::lookAt(eye, target, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+			piso.draw();
+
+			if (Mapa[i].at(j) == Muro)
+			{
+				muro.draw();
+			}
+
+			if (Mapa[i].at(j) == Pildorita)
+			{
+				pildora.draw();
+			}
+
+			if (Mapa[i].at(j) == Pacman)
+			{
+
+				if ((Mapa[i].at(j - 1) == Pildorita || Mapa[i].at(j - 1) == Vacio) && moveZmenos == true)
+				{
+					Mapa[i].at(j) = Vacio;
+					Mapa[i].at(j - 1) = Pacman;
+					moveZmenos = false;
+				}
+
+				else if ((Mapa[i].at(j + 1) == Pildorita || Mapa[i].at(j + 1) == Vacio) && moveZmas == true)
+				{
+					Mapa[i].at(j) = Vacio;
+					Mapa[i].at(j + 1) = Pacman;
+					moveZmas = false;
+				}
+
+				else if ((Mapa[i - 1].at(j) == Pildorita || Mapa[i - 1].at(j) == Vacio) && moveXmenos == true)
+				{
+					Mapa[i].at(j) = Vacio;
+					Mapa[i - 1].at(j) = Pacman;
+					moveXmenos = false;
+				}
+
+				else if ((Mapa[i + 1].at(j) == Pildorita || Mapa[i + 1].at(j) == Vacio) && moveXmas == true)
+				{
+					Mapa[i].at(j) = Vacio;
+					Mapa[i + 1].at(j) = Pacman;
+					moveXmas = false;
+				}
+
+				pacman.draw();
+
+			}
+
+			if (Mapa[i].at(j) == Fantasmita)
+			{
+				fantasma.draw();
+			}
+
+			if (Mapa[i].at(j) == Vacio)
+			{
+				piso.draw();
+			}
+		}
+	}
+}
+
+void Application::IAfantasmas()
+{
+
+}
+
+void Application::keyboard(int key, int scancode, int actions, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && actions == GLFW_PRESS) {
+		exit(0);
+	}
+	if (actions == GLFW_RELEASE)
+	{
+		switch (key)
+		{
+
+		case GLFW_KEY_A:
+			moveZmenos = true;
+			break;
+
+		case GLFW_KEY_D:
+			moveZmas = true;
+			break;
+
+		case GLFW_KEY_W:
+			moveXmenos = true;
+			break;
+
+		case GLFW_KEY_S:
+			moveXmas = true;
+			break;
+
+		case GLFW_KEY_T:
+			type = true;
+			break;
+
+		case GLFW_KEY_SPACE:
+			edit = true;
+			game = false;
+			break;
+
+		case GLFW_KEY_ENTER:
+			edit = false;
+			game = true;
+			break;
+		} 
+	}
+}
+
+void Application::display()
+{
+	if (game)
+	{
+		displayGame();
+	}
+	else if (edit)
+	{
+		displayEditor();
+	}
+}
+
+void Application::display2()
+{
+	displayMiniMap();
+}
 
 void Application::reshape(int w, int h)
 {
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 }
+
+
+

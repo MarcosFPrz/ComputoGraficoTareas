@@ -23,6 +23,7 @@ public:
 	void setShader(Shader shader);
 	void LoadFromFile(std::string file);
 	void SetTranslation(glm::mat4);
+	void Position(glm::mat4 posactual);
 	void SetScale(glm::mat4 sc);
 	void SetRotation(glm::mat4 rot);
 	void SetColor(glm::vec3 col);
@@ -35,7 +36,8 @@ private:
 		scale,
 		rotation,
 		camera,
-		perspective;
+		perspective,
+		position;
 	glm::vec3 color;
 	//Object3D();
 
